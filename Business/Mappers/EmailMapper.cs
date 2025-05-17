@@ -14,6 +14,14 @@ public static class EmailMapper
         return new EmailDto
         {
             Id = entity.Id,
+            Sender = sender ?? new SenderDto { // for demo purposes
+                Id = entity.SenderId,
+                Name = "Orlando Laurentius",
+                Email = "demo@example.com",
+                Initials = "OL",
+                AvatarUrl = "",
+                SenderType = "Admin"
+            },
             Subject = entity.Subject,
             Preview = entity.Preview,
             SentAt = entity.SentAt,
@@ -21,7 +29,6 @@ public static class EmailMapper
             Date = entity.SentAt.ToString("yyyy-MM-dd"),
             IsRead = entity.IsRead,
             IsStarred = entity.IsStarred,
-            Sender = sender ?? new SenderDto { Id = entity.SenderId },
             Labels = entity.Labels?.Select(el => el.Label.Name).ToList() ?? [],
         };
     }

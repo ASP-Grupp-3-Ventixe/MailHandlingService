@@ -11,5 +11,5 @@ public class SenderDto
     public string Email { get; set; }
     public string Initials { get; set; }
     public string AvatarUrl { get; set; }
-    public string Type { get; set; } // Customer, Sponsor, Partner, etc.
+    public string SenderType { get; set; } // Customer, Sponsor, Partner, etc.
 }

@@ -51,4 +51,4 @@ POST /api/emails/batch/move                 - Flytta flera e-postmeddelanden til
 "SqlServer": "Server=tcp:ventixe-project-sqlserver.database.windows.net,1433;Initial Catalog=database;Persist Security Info=False;User ID=SqlAdmin;Password={Kolbulle1!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
 # // local
-"SqlServer": "Server=tcp:ventixe-project-sqlserver.database.windows.net,1433;Initial Catalog=database;Persist Security Info=False;User ID=SqlAdmin;Password={Kolbulle1!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+"SqlServer": "Server=localhost,1433;Database=ventixe_database;User Id=sa;Password=Kolbulle1!;MultipleActiveResultSets=True;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;"
