@@ -1,5 +1,6 @@
 using MailHandlingServiceProvider.Data.Contexts;
 using MailHandlingServiceProvider.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace MailHandlingServiceProvider.Data.Repositories;
 

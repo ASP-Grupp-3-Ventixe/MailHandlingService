@@ -15,4 +15,6 @@ public class EmailDto
     public bool IsStarred { get; set; }
     
     public List<string> Labels { get; set; } = [];
+    
+    public List<RecipientDto?> Recipients { get; set; } = [];
 }

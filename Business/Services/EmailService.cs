@@ -12,6 +12,7 @@ public interface IEmailService
     Task<EmailResult<EmailDto>> CreateEmailAsync(CreateEmailDto createDto, Guid userId);
     Task<EmailListResult<EmailDto>> GetEmailsAsync(Guid userId, string folder = "inbox", bool unreadOnly = false, string? searchQuery = null);
     Task<EmailNavigationResult<EmailDetailsDto>> GetEmailByIdAsync(Guid emailId, Guid userId);
+    
     Task<EmailResult> SoftDeleteEmailAsync(Guid emailId, Guid userId);
     Task<EmailResult> HardDeleteEmailAsync(Guid emailId, Guid userId);
     Task<EmailResult> EmptyTrashAsync(Guid userId);

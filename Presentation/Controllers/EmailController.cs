@@ -1,8 +1,7 @@
-using System.Security.Claims;
 using MailHandlingServiceProvider.Business.DTOs;
 using MailHandlingServiceProvider.Business.Responses;
 using MailHandlingServiceProvider.Business.Services;
-using Microsoft.AspNetCore.Authorization;
+using MailHandlingServiceProvider.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailHandlingServiceProvider.Presentation.Controllers;
@@ -13,7 +12,6 @@ namespace MailHandlingServiceProvider.Presentation.Controllers;
 public class EmailsController(IEmailService emailService) : ControllerBase
 {
     private readonly IEmailService _emailService = emailService;
-    
     
     [HttpPost]
     public async Task<ActionResult<EmailResult<EmailDto>>> CreateEmail(CreateEmailDto emailDto)
@@ -205,9 +203,7 @@ public class EmailsController(IEmailService emailService) : ControllerBase
         
         return NoContent();
     }
-
- 
-
+    
 
     private Guid GetCurrentUserId()
     {

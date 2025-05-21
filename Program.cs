@@ -1,5 +1,6 @@
 using MailHandlingServiceProvider.Business.Extensions;
 using MailHandlingServiceProvider.Data.Extensions;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,7 @@ app.UseSeedData();
 
 
 app.MapOpenApi();
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
