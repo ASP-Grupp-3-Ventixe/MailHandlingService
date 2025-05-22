@@ -8,11 +8,10 @@ namespace MailHandlingServiceProvider.Presentation.Controllers;
 
 [ApiController]
 [Route("api/emails")]
-// [Authorize] // Temporarily commented out for testing
+[Authorize] // Temporarily commented out for testing
 public class EmailsController(IEmailService emailService) : ControllerBase
 {
     private readonly IEmailService _emailService = emailService;
-    
     
     [HttpPost]
     public async Task<ActionResult<EmailResult<EmailDto>>> CreateEmail(CreateEmailDto emailDto)
@@ -56,15 +55,39 @@ public class EmailsController(IEmailService emailService) : ControllerBase
     }
     
     [HttpDelete("{id}")]
-    public async Task<ActionResult> DeleteEmail(Guid id)
+    public async Task<ActionResult> SoftDeleteEmail(Guid id)
     {
         var userId = GetCurrentUserId();
-        var result = await _emailService.DeleteEmailAsync(id, userId);
+        var result = await _emailService.SoftDeleteEmailAsync(id, userId);
         
         if (!result.Succeeded)
             return StatusCode(result.StatusCode ?? 500, result);
         
         return NoContent();
+    }
+    
+    [HttpDelete("{emailId}/permanent")]
+    public async Task<ActionResult> HardDeleteEmail(Guid emailId)
+    {
+        var userId = GetCurrentUserId();
+        var result = await _emailService.HardDeleteEmailAsync(emailId, userId);
+        
+        if (!result.Succeeded)
+            return StatusCode(result.StatusCode ?? 500, result);
+        
+        return Ok(result);
+    }
+    
+    [HttpDelete("trash/empty")]
+    public async Task<ActionResult> EmptyTrash()
+    {
+        var userId = GetCurrentUserId();
+        var result = await _emailService.EmptyTrashAsync(userId);
+        
+        if (!result.Succeeded)
+            return StatusCode(result.StatusCode ?? 500, result);
+        
+        return Ok(result);
     }
     
     [HttpPut("{id}/read")]
@@ -180,25 +203,15 @@ public class EmailsController(IEmailService emailService) : ControllerBase
         
         return NoContent();
     }
-
-    [HttpDelete("trash/empty")]
-    public async Task<ActionResult> EmptyTrash()
-    {
-        var userId = GetCurrentUserId();
-        var result = await _emailService.EmptyTrashAsync(Guid.Empty, userId);
-        
-        if (!result.Succeeded)
-            return StatusCode(result.StatusCode ?? 500, result);
-        
-        return NoContent();
-    }
+    
 
     private Guid GetCurrentUserId()
     {
         // for testing, return a fixed GUID
-        return Guid.Parse("00000000-0000-0000-0000-000000000001");
+        // return Guid.Parse("00000000-0000-0000-0000-000000000001");
         
-        // return Guid.Parse(User.FindFirst("sub")?.Value ?? "");
+        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        return Guid.TryParse(userIdClaim, out var guid) ? guid : Guid.Empty;
     }
 }
 public class MoveToFolderRequest

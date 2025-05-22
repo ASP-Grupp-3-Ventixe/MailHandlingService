@@ -14,6 +14,7 @@ public static class EmailMapper
         return new EmailDto
         {
             Id = entity.Id,
+            Sender = sender,
             Subject = entity.Subject,
             Preview = entity.Preview,
             SentAt = entity.SentAt,
@@ -21,19 +22,20 @@ public static class EmailMapper
             Date = entity.SentAt.ToString("yyyy-MM-dd"),
             IsRead = entity.IsRead,
             IsStarred = entity.IsStarred,
-            Sender = sender ?? new SenderDto { Id = entity.SenderId },
             Labels = entity.Labels?.Select(el => el.Label.Name).ToList() ?? [],
+            Recipients = entity.Recipients?.Select(r => r.ToDto()).ToList() ?? []
         };
     }
     
     // map from entity to DTO (details view)
-    public static EmailDetailsDto ToDetailsDto(this EmailEntity? entity)
+    public static EmailDetailsDto? ToDetailsDto(this EmailEntity? entity, SenderDto? sender = null)
     {
         if (entity == null) return null;
         
         var dto = new EmailDetailsDto
         {
             Id = entity.Id,
+            Sender = sender,
             Subject = entity.Subject,
             Preview = entity.Preview,
             Body = entity.Body,
@@ -53,11 +55,11 @@ public static class EmailMapper
     }
     
     // map from CreateEmailDto to EmailEntity
-    public static EmailEntity ToEntity(this CreateEmailDto? dto, Guid senderId)
+    public static EmailEntity? ToEntity(this CreateEmailDto? dto, Guid senderId)
     {
         if (dto == null) return null;
         
-        string preview = GeneratePreview(dto.Body);
+        var preview = GeneratePreview(dto.Body);
         
         var entity = new EmailEntity
         {

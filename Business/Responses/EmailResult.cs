@@ -22,7 +22,7 @@ public class EmailListResult<T> : ResponseResult
 
 public class EmailNavigationResult<T> : ResponseResult
 {
-    public T Item { get; set; } = default!; 
+    public T? Item { get; set; } = default!; 
     public int CurrentPosition { get; set; } 
     public int TotalCount { get; set; }    
     public Guid? PreviousEmailId { get; set; } 

@@ -10,8 +10,8 @@ public class CreateEmailDto
     [Required]
     public string Body { get; set; } = null!;
     
-    [Required]
-    public SenderDto Sender { get; set; } = null!; // Is the logged-in user
+    // [Required]
+    // public SenderDto Sender { get; set; } = null!; // Is the logged-in user
 
     [Required]
     public List<RecipientDto> Recipients { get; set; } = [];

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "xIq6xv27P/FFCrf+eAKqGx878KX4O1jNfMhu5PtIXII=",
+  "Source": "MailHandlingService",
+  "BasePath": "_content/MailHandlingService",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
