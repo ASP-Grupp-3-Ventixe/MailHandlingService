@@ -1,5 +1,7 @@
 using MailHandlingServiceProvider.Business.Extensions;
 using MailHandlingServiceProvider.Data.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,17 +16,38 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         policy =>
         {
-            policy.AllowAnyOrigin()
+            policy.WithOrigins(
+                    "http://localhost:5173", // Development
+                    "http://localhost:3000",  // Development alternative
+                    "https://kind-coast-0cff2bc03.6.azurestaticapps.net" // Production
+                )
                 .AllowAnyMethod()
-                .AllowAnyHeader();
+                .AllowAnyHeader()
+                .AllowCredentials(); // Viktigt för JWT tokens
         });
 });
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        // Använd din deployed token service
+        options.Authority = builder.Configuration["TokenService:Authority"] ?? 
+                            "https://tokenserviceprovider.onrender.com";
+        
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false,
+            ValidateIssuer = true,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddContexts(builder.Configuration.GetConnectionString("SqlServer")!);
 builder.Services.AddRepositories(builder.Configuration);
 builder.Services.AddServices(builder.Configuration);
-
-// services.AddSingleton<IEventBus, AzureServiceBusEventBus>();
 
 
 var app = builder.Build();
@@ -32,6 +55,7 @@ app.UseSeedData();
 
 
 app.MapOpenApi();
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {

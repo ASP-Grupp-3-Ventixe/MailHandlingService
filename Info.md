@@ -1,4 +1,4 @@
-
+# MailHandlingService API endpoints
 
 # // Mail handling
 GET    /api/emails                          - Lista e-postmeddelanden (med filtrering)
@@ -16,12 +16,12 @@ DELETE /api/emails/{id}/star                - Ta bort stjärnmärkning från e-p
 GET    /api/emails/starred                  - Hämta alla stjärnmärkta e-postmeddelanden
 
 # // Label handling
-GET    /api/labels                          - Lista alla etiketter
-POST   /api/labels                          - Skapa ny etikett
-PUT    /api/labels/{id}                     - Uppdatera etikett (namn/färg)
-DELETE /api/labels/{id}                     - Ta bort etikett
-POST   /api/emails/{id}/labels/{labelId}    - Lägg till etikett på e-post
-DELETE /api/emails/{id}/labels/{labelId}    - Ta bort etikett från e-post
+GET    /api/labels                          - Lista alla labels
+POST   /api/labels                          - Skapa ny label
+PUT    /api/labels/{id}                     - Uppdatera label (namn/färg)
+DELETE /api/labels/{id}                     - Ta bort label
+POST   /api/emails/{id}/labels/{labelId}    - Lägg till label på e-post
+DELETE /api/emails/{id}/labels/{labelId}    - Ta bort label från e-post
 
 
 ### // Extra
@@ -48,7 +48,7 @@ POST /api/emails/batch/delete               - Ta bort flera e-postmeddelanden
 POST /api/emails/batch/move                 - Flytta flera e-postmeddelanden till annan mapp
 
 # // Azure
-"SqlServer": "Server=tcp:ventixe-project-sqlserver.database.windows.net,1433;Initial Catalog=database;Persist Security Info=False;User ID=SqlAdmin;Password={Kolbulle1!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+"SqlServer": "Server=tcp:ventixe-project-sqlserver.database.windows.net,1433;Initial Catalog=database;Persist Security Info=False;User ID=SqlAdmin;Password=Kolbulle1!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
 
 # // local
-"SqlServer": "Server=tcp:ventixe-project-sqlserver.database.windows.net,1433;Initial Catalog=database;Persist Security Info=False;User ID=SqlAdmin;Password={Kolbulle1!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+"SqlServer": "Server=localhost,1433;Database=ventixe_database;User Id=sa;Password=Kolbulle1!;MultipleActiveResultSets=True;Encrypt=False;TrustServerCertificate=True;Connection Timeout=30;"

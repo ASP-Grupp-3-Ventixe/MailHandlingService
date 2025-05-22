@@ -14,6 +14,7 @@ public interface IBaseRepository<TEntity> where TEntity : class
     Task<RepositoryResult> ExistsAsync(Expression<Func<TEntity, bool>> findBy);
     Task<RepositoryResult> UpdateAsync(TEntity entity);
     Task<RepositoryResult> DeleteAsync(Expression<Func<TEntity, bool>> findBy);
+    Task<RepositoryResult> DeleteManyAsync(Expression<Func<TEntity, bool>>? filterBy);
     
 }
 
@@ -135,6 +136,28 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
                 return new RepositoryResult { Succeeded = false, StatusCode = 404, Error = "Entity not found." };
 
             _table.Remove(entity);
+            await _context.SaveChangesAsync();
+            return new RepositoryResult { Succeeded = true, StatusCode = 200 };
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return new RepositoryResult { Succeeded = false, StatusCode = 500, Error = ex.Message };
+        }
+    }
+
+    public virtual async Task<RepositoryResult> DeleteManyAsync(Expression<Func<TEntity, bool>>? filterBy)
+    {
+        try
+        {
+            if (filterBy == null)
+                return new RepositoryResult { Succeeded = false, StatusCode = 400, Error = "Invalid expression" };
+
+            var entities = await _table.Where(filterBy).ToListAsync();
+            if (!entities.Any())
+                return new RepositoryResult { Succeeded = false, StatusCode = 404, Error = "No entities found." };
+
+            _table.RemoveRange(entities);
             await _context.SaveChangesAsync();
             return new RepositoryResult { Succeeded = true, StatusCode = 200 };
         }
