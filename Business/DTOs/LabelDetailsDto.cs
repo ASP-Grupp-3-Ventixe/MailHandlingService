@@ -1,3 +1,5 @@
+using System;
+
 namespace MailHandlingServiceProvider.Business.DTOs;
 
 public class LabelDetailsDto : LabelDto

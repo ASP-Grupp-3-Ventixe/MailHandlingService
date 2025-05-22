@@ -1,7 +1,8 @@
+using System;
+using System.Threading.Tasks;
 using MailHandlingServiceProvider.Business.DTOs;
 using MailHandlingServiceProvider.Business.Responses;
 using MailHandlingServiceProvider.Business.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MailHandlingServiceProvider.Presentation.Controllers

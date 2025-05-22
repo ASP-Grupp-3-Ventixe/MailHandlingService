@@ -1,4 +1,6 @@
 using MailHandlingServiceProvider.Data.Repositories;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MailHandlingServiceProvider.Data.Extensions;
 

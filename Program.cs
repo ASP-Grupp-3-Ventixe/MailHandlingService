@@ -1,6 +1,10 @@
+using System;
 using MailHandlingServiceProvider.Business.Extensions;
 using MailHandlingServiceProvider.Data.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,22 +21,19 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy.WithOrigins(
-                    "http://localhost:5173", // Development
-                    "http://localhost:3000",  // Development alternative
-                    "https://kind-coast-0cff2bc03.6.azurestaticapps.net" // Production
+                    "http://localhost:5173", 
+                    "https://kind-coast-0cff2bc03.6.azurestaticapps.net" 
                 )
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .AllowCredentials(); // Viktigt för JWT tokens
+                .AllowCredentials(); 
         });
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        // Använd din deployed token service
-        options.Authority = builder.Configuration["TokenService:Authority"] ?? 
-                            "https://tokenserviceprovider.onrender.com";
+        options.Authority = builder.Configuration["TokenService:Authority"];
         
         options.TokenValidationParameters = new TokenValidationParameters
         {
