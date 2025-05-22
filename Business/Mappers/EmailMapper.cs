@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using MailHandlingServiceProvider.Business.DTOs;
 using MailHandlingServiceProvider.Data.Entities;

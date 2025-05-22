@@ -1,5 +1,6 @@
 using MailHandlingServiceProvider.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MailHandlingServiceProvider.Data.Extensions;
 

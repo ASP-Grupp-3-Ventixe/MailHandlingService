@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using MailHandlingServiceProvider.Data.Entities;
 
 namespace MailHandlingServiceProvider.Data.Configurations;
