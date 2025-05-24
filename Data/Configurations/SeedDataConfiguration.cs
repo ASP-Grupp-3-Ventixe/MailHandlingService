@@ -11,12 +11,12 @@ public static class SeedDataConfiguration
     {
         return new List<FolderEntity>
         {
-            new FolderEntity { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Inbox), IsSystemFolder = true },
-            new FolderEntity { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Starred), IsSystemFolder = true },
-            new FolderEntity { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Sent), IsSystemFolder = true },
-            new FolderEntity { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Drafts), IsSystemFolder = true },
-            new FolderEntity { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Spam), IsSystemFolder = true },
-            new FolderEntity { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Trash), IsSystemFolder = true }
+            new() { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Inbox), IsSystemFolder = true },
+            new() { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Starred), IsSystemFolder = true },
+            new() { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Sent), IsSystemFolder = true },
+            new() { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Drafts), IsSystemFolder = true },
+            new() { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Spam), IsSystemFolder = true },
+            new() { Id = Guid.NewGuid(), Name = nameof(SystemFolderType.Trash), IsSystemFolder = true }
 
         };
     }

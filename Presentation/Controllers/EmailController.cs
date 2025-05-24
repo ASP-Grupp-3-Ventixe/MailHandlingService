@@ -18,15 +18,32 @@ public class EmailsController(IEmailService emailService) : ControllerBase
     [HttpPost]
     public async Task<ActionResult<EmailResult<EmailDto>>> CreateEmail(CreateEmailDto emailDto)
     {
-        if (!ModelState.IsValid) return BadRequest(ModelState);
+        foreach (var claim in User.Claims)
+        {
+            Console.WriteLine($"[CLAIM] {claim.Type}: {claim.Value}");
+        }
         
-        var userId = GetCurrentUserId();
-        var result = await _emailService.CreateEmailAsync(emailDto, userId);
-        
-        if (!result.Succeeded)
-            return StatusCode(result.StatusCode ?? 500, result);
-            
-        return CreatedAtAction(nameof(GetEmail), new { id = result.Result.Id }, result);
+        try
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var userId = GetCurrentUserId();
+            // Logga userId för att se att det blir rätt
+            Console.WriteLine($"[DEBUG] userId: {userId}");
+
+            var result = await _emailService.CreateEmailAsync(emailDto, userId);
+
+            if (!result.Succeeded)
+                return StatusCode(result.StatusCode ?? 500, result);
+
+            return CreatedAtAction(nameof(GetEmail), new { id = result.Result.Id }, result);
+        }
+        catch (Exception ex)
+        {
+            // Logga detaljerat fel
+            Console.WriteLine($"[ERROR] {ex}");
+            throw; // eller return StatusCode(500, ex.ToString());
+        }
     }
     
     [HttpGet]
@@ -209,10 +226,9 @@ public class EmailsController(IEmailService emailService) : ControllerBase
 
     private Guid GetCurrentUserId()
     {
-        // for testing, return a fixed GUID
-        // return Guid.Parse("00000000-0000-0000-0000-000000000001");
-        
-        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        var userIdClaim =
+            User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value ??
+            User.FindFirst("nameid")?.Value;
         return Guid.TryParse(userIdClaim, out var guid) ? guid : Guid.Empty;
     }
 }

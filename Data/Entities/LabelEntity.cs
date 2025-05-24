@@ -10,12 +10,12 @@ public class LabelEntity
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [Required]
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } = null!;
 
     [Required]
     public Guid UserId { get; set; } // connects to UserId 
 
-    public string Color { get; set; } 
+    public string? Color { get; set; } 
 
     public DateTime CreatedAt { get; set; }
     

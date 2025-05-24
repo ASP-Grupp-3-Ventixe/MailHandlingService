@@ -6,7 +6,7 @@ namespace MailHandlingServiceProvider.Business.Mappers;
 
 public static class AttachmentMapper
 {
-    public static AttachmentDto ToDto(this AttachmentEntity? entity)
+    public static AttachmentDto? ToDto(this AttachmentEntity? entity)
     {
         if (entity == null) return null;
         
@@ -19,7 +19,7 @@ public static class AttachmentMapper
         };
     }
     
-    public static AttachmentEntity ToEntity(this AttachmentDto? dto, Guid emailId, string storagePath)
+    public static AttachmentEntity? ToEntity(this AttachmentDto? dto, Guid emailId, string storagePath)
     {
         if (dto == null) return null;
         

@@ -6,7 +6,7 @@ namespace MailHandlingServiceProvider.Business.Mappers;
 
 public static class LabelMapper
 {
-    public static LabelDto ToDto(this LabelEntity? entity)
+    public static LabelDto? ToDto(this LabelEntity? entity)
     {
         if (entity == null) return null;
         
@@ -18,7 +18,7 @@ public static class LabelMapper
         };
     }
     
-    public static LabelEntity ToEntity(this CreateLabelDto? dto, Guid userId)
+    public static LabelEntity? ToEntity(this CreateLabelDto? dto, Guid userId)
     {
         if (dto == null) return null;
         

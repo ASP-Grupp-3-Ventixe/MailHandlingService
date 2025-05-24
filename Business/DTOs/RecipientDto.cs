@@ -9,12 +9,12 @@ public class RecipientDto
     public Guid? Id { get; set; }
     
     [Required]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     
     [Required]
     [Display(Name = "Email address")]
     [EmailAddress]
-    public string Email { get; set; }
+    public string? Email { get; set; }
     
     [Required]
     public string RecipientType { get; set; } = null!; // To, CC, BCC

@@ -7,7 +7,7 @@ namespace MailHandlingServiceProvider.Business.DTOs;
 public class CreateEmailDto
 {
     [Required]
-    public string Subject { get; set; }
+    public string? Subject { get; set; }
     
     [Required]
     public string Body { get; set; } = null!;

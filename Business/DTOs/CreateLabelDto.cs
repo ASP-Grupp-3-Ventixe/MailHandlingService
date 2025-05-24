@@ -5,8 +5,8 @@ namespace MailHandlingServiceProvider.Business.DTOs;
 public class CreateLabelDto
 {
     [Required]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     
     [Required]
-    public string Color { get; set; }
+    public string? Color { get; set; }
 }
