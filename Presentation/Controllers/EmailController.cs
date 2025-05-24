@@ -10,7 +10,7 @@ namespace MailHandlingServiceProvider.Presentation.Controllers;
 
 [ApiController]
 [Route("api/emails")]
-[Authorize] // Temporarily commented out for testing
+[Authorize]
 public class EmailsController(IEmailService emailService) : ControllerBase
 {
     private readonly IEmailService _emailService = emailService;
