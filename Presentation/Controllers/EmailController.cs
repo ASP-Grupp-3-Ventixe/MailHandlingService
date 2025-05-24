@@ -28,7 +28,6 @@ public class EmailsController(IEmailService emailService) : ControllerBase
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var userId = GetCurrentUserId();
-            // Logga userId för att se att det blir rätt
             Console.WriteLine($"[DEBUG] userId: {userId}");
 
             var result = await _emailService.CreateEmailAsync(emailDto, userId);
@@ -40,9 +39,9 @@ public class EmailsController(IEmailService emailService) : ControllerBase
         }
         catch (Exception ex)
         {
-            // Logga detaljerat fel
+
             Console.WriteLine($"[ERROR] {ex}");
-            throw; // eller return StatusCode(500, ex.ToString());
+            throw; 
         }
     }
     

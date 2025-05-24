@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen(c =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-        Description = "Skriv in 'Bearer' [mellanslag] och sedan din token. Exempel: Bearer eyJhbGciOiJIUzI1NiIs..."
+        Description = "Enter 'Bearer' [space] and then your token in the text input below.\nExample: 'Bearer"
     });
     c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
     {
