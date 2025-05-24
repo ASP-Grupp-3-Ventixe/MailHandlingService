@@ -1,4 +1,7 @@
 
+using System;
+using System.Collections.Generic;
+
 namespace MailHandlingServiceProvider.Business.Responses;
 
 public class EmailResult : ResponseResult

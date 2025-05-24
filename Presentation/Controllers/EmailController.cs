@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using MailHandlingServiceProvider.Business.DTOs;
 using MailHandlingServiceProvider.Business.Responses;
 using MailHandlingServiceProvider.Business.Services;
@@ -8,7 +10,7 @@ namespace MailHandlingServiceProvider.Presentation.Controllers;
 
 [ApiController]
 [Route("api/emails")]
-[Authorize] // Temporarily commented out for testing
+[Authorize]
 public class EmailsController(IEmailService emailService) : ControllerBase
 {
     private readonly IEmailService _emailService = emailService;
@@ -129,7 +131,7 @@ public class EmailsController(IEmailService emailService) : ControllerBase
     }
 
     [HttpPost("{id}/forward")]
-    public async Task<ActionResult<EmailResult<EmailDto>>> ForwardEmail(Guid id, CreateForwardDto forwardDto)
+    public async Task<ActionResult<EmailResult<EmailDto>>> ForwardEmail(Guid id,  CreateForwardDto forwardDto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         

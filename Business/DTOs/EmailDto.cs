@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace MailHandlingServiceProvider.Business.DTOs;
 
 public class EmailDto

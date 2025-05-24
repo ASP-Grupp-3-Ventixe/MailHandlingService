@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using MailHandlingServiceProvider.Business.DTOs;
 using MailHandlingServiceProvider.Data.Entities;
 

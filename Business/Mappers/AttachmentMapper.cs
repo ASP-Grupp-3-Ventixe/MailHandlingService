@@ -1,3 +1,4 @@
+using System;
 using MailHandlingServiceProvider.Business.DTOs;
 using MailHandlingServiceProvider.Data.Entities;
 
