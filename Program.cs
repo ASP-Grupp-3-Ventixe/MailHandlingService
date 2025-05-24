@@ -1,4 +1,4 @@
-using System;
+using System.Text;
 using MailHandlingServiceProvider.Business.Extensions;
 using MailHandlingServiceProvider.Data.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -33,14 +33,16 @@ builder.Services.AddCors(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.Authority = builder.Configuration["TokenService:Authority"];
-        
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateAudience = false,
             ValidateIssuer = true,
+            ValidateAudience = true,
             ValidateLifetime = true,
-            ClockSkew = TimeSpan.Zero
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty))
         };
     });
 
