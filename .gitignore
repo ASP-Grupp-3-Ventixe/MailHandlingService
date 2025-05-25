@@ -1,0 +1,35 @@
+# .NET build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider/VSCode/Visual Studio
+.idea/
+.vscode/
+*.vs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Sensitive configuration
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+Presentation/appsettings.json
+Infrastructure/appsettings.json
+
+# Entity Framework Migrations (optional, remove if you want to track these)
+Migrations/
+
+
+# Others
+*.swp
+*.bak
+*.tmp
