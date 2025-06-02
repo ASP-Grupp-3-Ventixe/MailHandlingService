@@ -32,7 +32,7 @@ public interface IEmailService
     Task<EmailListResult<EmailDto>> GetStarredEmailsAsync(Guid userId);
 }
 
-public class EmailService(IEmailRepository emailRepository, ILabelRepository labelRepository, IFolderRepository folderRepository, IAttachmentRepository attachmentRepository, IRecipientRepository recipientRepository) : IEmailService
+public class CreateEmail(IEmailRepository emailRepository, ILabelRepository labelRepository, IFolderRepository folderRepository, IAttachmentRepository attachmentRepository, IRecipientRepository recipientRepository) : IEmailService
 {
     private readonly IEmailRepository _emailRepository = emailRepository;
     private readonly ILabelRepository _labelRepository = labelRepository;
