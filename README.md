@@ -86,6 +86,12 @@ DELETE `/api/emails/{id}`
 }
 ```
 
+
+<img width="1192" alt="Screenshot 2025-06-01 at 22 32 36" src="https://github.com/user-attachments/assets/a9e28117-e665-4a51-b919-bcbeba02c7b2" /> 
+
+
+<img width="1224" alt="Screenshot 2025-06-01 at 22 41 40" src="https://github.com/user-attachments/assets/e13eb693-2c89-4fef-938c-661899b379b0" />
+
 ## Important Notes
 - JWT authentication is required for all endpoints (`[Authorize]` attribute).
 - The database is managed via Entity Framework Core (`MailDbContext`).
