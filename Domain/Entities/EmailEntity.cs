@@ -12,7 +12,7 @@ public class EmailEntity
     public Guid SenderId { get; set; } // connects to UserId
 
     [Required]
-    public string Subject { get; set; } = null!;
+    public string? Subject { get; set; }
 
     [Required]
     public string Body { get; set; } = null!;

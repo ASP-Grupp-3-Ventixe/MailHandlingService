@@ -14,10 +14,10 @@ public class AttachmentEntity
     public virtual EmailEntity EmailEntity { get; set; } = null!;
 
     [Required]
-    public string? FileName { get; set; } = null!;
+    public string? FileName { get; set; } 
 
     [Required]
-    public string? ContentType { get; set; } = null!;
+    public string? ContentType { get; set; } 
 
     [Required]
     public long Size { get; set; }

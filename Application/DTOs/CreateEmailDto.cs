@@ -11,10 +11,10 @@ public class CreateEmailDto
     public string Body { get; set; } = null!;
     
     // [Required]
-    // public SenderDto Sender { get; set; } = null!; // Is the logged-in user
+    // public SenderDto Sender { get; set; } = null!; // Is the signed-in user
 
     [Required]
-    public List<RecipientDto> Recipients { get; set; } = [];
+    public List<RecipientDto>? Recipients { get; set; } = [];
     
     public List<Guid>? LabelIds { get; set; } = [];
     

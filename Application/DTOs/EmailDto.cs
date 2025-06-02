@@ -3,7 +3,7 @@ namespace Application.DTOs;
 public class EmailDto
 {
     public Guid Id { get; set; }
-    public string Subject { get; set; } = null!;
+    public string? Subject { get; set; }
     public string Preview { get; set; } = null!;
     public SenderDto? Sender { get; set; } = null!;
     

@@ -8,7 +8,7 @@ public class LabelEntity
     public Guid Id { get; set; } = Guid.NewGuid();
 
     [Required]
-    public string? Name { get; set; } = null!;
+    public string? Name { get; set; }
 
     [Required]
     public Guid UserId { get; set; } // connects to UserId 

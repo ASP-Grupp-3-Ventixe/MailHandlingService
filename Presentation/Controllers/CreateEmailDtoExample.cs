@@ -11,8 +11,8 @@ public class CreateEmailDtoExample : IExamplesProvider<CreateEmailDto>
         {
             Subject = "Test mail",
             Body = "This is a test email.",
-            Recipients = new List<RecipientDto>
-            {
+            Recipients =
+            [
                 new RecipientDto
                 {
                     Id = null,
@@ -20,9 +20,9 @@ public class CreateEmailDtoExample : IExamplesProvider<CreateEmailDto>
                     Email = "user@example.com",
                     RecipientType = "To"
                 }
-            },
-            LabelIds = new List<Guid>(),
-            AttachmentIds = new List<Guid>()
+            ],
+            LabelIds = [],
+            AttachmentIds = []
         };
     }
 }

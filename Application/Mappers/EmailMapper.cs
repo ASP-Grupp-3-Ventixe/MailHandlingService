@@ -22,7 +22,7 @@ public static class EmailMapper
             Date = entity.SentAt.ToString("yyyy-MM-dd"),
             IsRead = entity.IsRead,
             IsStarred = entity.IsStarred,
-            Labels = entity.Labels.Select(el => el.Label.Name).ToList() ?? [],
+            Labels = entity.Labels?.Select(el => el.Label.Name).ToList() ?? [],
             Recipients = entity.Recipients?.Select(r => r.ToDto()).ToList() ?? []
         };
     }
@@ -48,7 +48,8 @@ public static class EmailMapper
             ForwardOfId = entity.ForwardOfId,
             Labels = entity.Labels?.Select(el => el.Label.Name).ToList() ?? [],
             Recipients = entity.Recipients?.Select(r => r.ToDto()).ToList() ?? [],
-            Attachments = entity.Attachments?.Select(a => a.ToDto()).ToList() ?? []
+            Attachments = entity.Attachments?.Select(a => a.ToDto()).ToList() ?? [],
+            FolderId = entity.FolderId
         };
         
         return dto;
